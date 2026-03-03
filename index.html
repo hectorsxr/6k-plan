@@ -14,35 +14,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0a;
-    --bg2: #141414;
-    --bg3: #1e1e1e;
-    --border: #2a2a2a;
-    --accent: #f97316;
-    --accent2: #fb923c;
-    --text: #f5f5f5;
-    --text2: #a3a3a3;
-    --text3: #525252;
-    --done-bg: #0c1a0c;
-    --done-border: #166534;
-    --done-text: #86efac;
+    --bg: #0a0a0a; --bg2: #141414; --bg3: #1e1e1e;
+    --border: #2a2a2a; --accent: #f97316; --text: #f5f5f5;
+    --text2: #a3a3a3; --text3: #525252;
+    --done-bg: #0c1a0c; --done-border: #166534; --done-text: #86efac;
     --radius: 12px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding-bottom: 40px;
-  }
-  header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 20px 12px;
-  }
+  body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 40px; }
+
+  /* SYNC BANNER */
+  .sync-bar { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; transition: all 0.3s; }
+  .sync-bar.syncing { background: #1a1a00; color: #fbbf24; }
+  .sync-bar.synced  { background: #0c1a0c; color: var(--done-text); }
+  .sync-bar.error   { background: #1a0a0a; color: #f87171; }
+  .sync-bar.hidden  { display: none; }
+  .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .sync-bar.syncing .sync-dot { animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* LOADING */
+  .loading-screen { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; z-index: 200; }
+  .loading-screen.hidden { display: none; }
+  .loading-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 900; }
+  .loading-logo span { color: var(--accent); }
+  .loading-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 13px; color: var(--text3); }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 16px 20px 12px; }
   .header-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; }
   .app-title { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 900; letter-spacing: -0.5px; line-height: 1; }
   .app-title span { color: var(--accent); }
@@ -50,12 +50,14 @@
   .progress-info strong { display: block; font-size: 22px; color: var(--accent); }
   .progress-bar-track { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #fbbf24); border-radius: 2px; transition: width 0.5s cubic-bezier(.4,0,.2,1); }
+
   .week-tabs { display: flex; gap: 6px; padding: 16px 20px 0; overflow-x: auto; scrollbar-width: none; }
   .week-tabs::-webkit-scrollbar { display: none; }
   .week-tab { flex-shrink: 0; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg2); color: var(--text2); cursor: pointer; transition: all 0.2s; }
   .week-tab.active { background: var(--accent); border-color: var(--accent); color: #000; }
   .week-tab.completed { border-color: var(--done-border); color: var(--done-text); }
   .week-tab .week-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--done-text); margin-right: 4px; vertical-align: middle; }
+
   .week-section { display: none; padding: 16px 20px 0; }
   .week-section.active { display: block; }
   .week-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
@@ -63,6 +65,7 @@
   .week-title span { color: var(--accent); }
   .week-stats { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--text3); text-align: right; }
   .week-stats strong { display: block; font-size: 20px; color: var(--text2); }
+
   .day-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; transition: border-color 0.3s; }
   .day-card.done { background: var(--done-bg); border-color: var(--done-border); }
   .day-card.rest { opacity: 0.55; }
@@ -87,29 +90,36 @@
   .day-card.done .day-body { border-top-color: var(--done-border); }
   .day-full-desc { font-size: 14px; color: var(--text2); line-height: 1.6; padding-top: 14px; padding-bottom: 14px; }
   .day-full-desc .highlight { color: var(--accent); font-weight: 600; }
-  .photos-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--text3); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+
+  .photos-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--text3); text-transform: uppercase; margin-bottom: 10px; }
   .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; }
   .photo-thumb { aspect-ratio: 1; border-radius: 8px; overflow: hidden; position: relative; background: var(--bg3); cursor: pointer; }
   .photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .photo-delete { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.75); border: none; color: #fff; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
-  .photo-thumb:hover .photo-delete { opacity: 1; }
+  .photo-thumb:hover .photo-delete, .photo-thumb:active .photo-delete { opacity: 1; }
   .add-photo-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 10px; border: 1.5px dashed var(--border); border-radius: 8px; background: transparent; color: var(--text3); font-family: 'Barlow', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.2s; }
   .add-photo-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .add-photo-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .photo-limit { font-size: 11px; color: var(--text3); margin-bottom: 8px; }
   .file-input { display: none; }
   .notes-area { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 13px; padding: 10px 12px; resize: none; margin-top: 10px; min-height: 60px; transition: border-color 0.2s; }
   .notes-area:focus { outline: none; border-color: var(--accent); }
   .notes-area::placeholder { color: var(--text3); }
-  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 999; align-items: center; justify-content: center; padding: 20px; }
-  .lightbox.open { display: flex; }
-  .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 8px; object-fit: contain; }
-  .lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--accent); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; padding: 10px 20px; border-radius: 24px; transition: transform 0.3s cubic-bezier(.4,0,.2,1); z-index: 500; white-space: nowrap; }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-  .no-photos { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); margin-bottom: 10px; }
+
   .week-progress-wrap { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
   .week-progress-track { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .week-progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s; }
   .week-progress-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; color: var(--text3); white-space: nowrap; }
+
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 999; align-items: center; justify-content: center; padding: 20px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 8px; object-fit: contain; }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.1); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--accent); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; padding: 10px 20px; border-radius: 24px; transition: transform 0.3s cubic-bezier(.4,0,.2,1); z-index: 500; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .no-photos { font-size: 12px; color: var(--text3); margin-bottom: 10px; }
+
   @media (max-width: 380px) {
     .app-title { font-size: 24px; }
     .week-title { font-size: 28px; }
@@ -118,6 +128,20 @@
 </style>
 </head>
 <body>
+
+<!-- Loading -->
+<div class="loading-screen" id="loading-screen">
+  <div class="loading-logo">PLAN <span>6K</span></div>
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Cargando datos...</div>
+</div>
+
+<!-- Sync bar -->
+<div class="sync-bar hidden" id="sync-bar">
+  <div class="sync-dot"></div>
+  <span id="sync-msg">Sincronizando...</span>
+</div>
+
 <header>
   <div class="header-top">
     <div class="app-title">PLAN <span>6K</span><br>30 MIN</div>
@@ -130,126 +154,247 @@
     <div class="progress-bar-fill" id="global-bar" style="width:0%"></div>
   </div>
 </header>
+
 <div class="week-tabs" id="week-tabs"></div>
 <div id="weeks-container"></div>
+
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 <div class="toast" id="toast"></div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
 <script>
+// ─── Firebase init ───────────────────────────────────────────────
+const firebaseConfig = {
+  apiKey: "AIzaSyDeihlhOnB_40pcv7i03x_hVMl5pDMKwTg",
+  authDomain: "plan6k-efcff.firebaseapp.com",
+  projectId: "plan6k-efcff",
+  storageBucket: "plan6k-efcff.firebasestorage.app",
+  messagingSenderId: "923031938045",
+  appId: "1:923031938045:web:606afc972b7c29aec9af94"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const COLLECTION = 'sessions';
+const MAX_PHOTOS = 5;
+
+// ─── Plan data ────────────────────────────────────────────────────
 const PLAN = [
-  { week: 1, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"20 min de trote suave", detail:"20 minutos de trote suave. Mantén un ritmo conversacional — deberías poder hablar sin quedarte sin aliento.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"4×200m al 75% VAM", detail:"Intervalos: <span class='highlight'>4×200m al 75% VAM</span>, recuperación = 1.5 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"25 min a ritmo constante", detail:"25 minutos de trote a ritmo constante. Un poco más exigente que el trote suave pero sostenible.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o estiramientos", detail:"Descanso activo o estiramientos suaves. Aprovecha para cuidar la movilidad de caderas y gemelos.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"30 min de trote suave", detail:"30 minutos de trote suave. El día más largo de la semana — ritmo muy cómodo.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"5×100m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>5×100m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total. El cuerpo se adapta mientras descansas.", rest:true }
+  { week:1, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"20 min de trote suave",detail:"20 minutos de trote suave. Mantén un ritmo conversacional — deberías poder hablar sin quedarte sin aliento.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"4×200m al 75% VAM",detail:"Intervalos: <span class='highlight'>4×200m al 75% VAM</span>, recuperación = 1.5 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"25 min a ritmo constante",detail:"25 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"30 min de trote suave",detail:"30 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"5×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>5×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total. El cuerpo se adapta mientras descansas.",rest:true}
   ]},
-  { week: 2, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"25 min de trote suave", detail:"25 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"5×200m al 75% VAM", detail:"Intervalos: <span class='highlight'>5×200m al 75% VAM</span>, recuperación = 1.5 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"30 min a ritmo constante", detail:"30 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o yoga", detail:"Descanso activo o yoga. Ideal para trabajar flexibilidad y prevenir lesiones.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"35 min de trote suave", detail:"35 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"6×100m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>6×100m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:2, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"25 min de trote suave",detail:"25 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"5×200m al 75% VAM",detail:"Intervalos: <span class='highlight'>5×200m al 75% VAM</span>, recuperación = 1.5 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"30 min a ritmo constante",detail:"30 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"35 min de trote suave",detail:"35 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"6×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>6×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
-  { week: 3, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"30 min de trote suave", detail:"30 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"4×300m al 80% VAM", detail:"Intervalos: <span class='highlight'>4×300m al 80% VAM</span>, recuperación = 2 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"35 min a ritmo constante", detail:"35 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o estiramientos", detail:"Descanso activo o estiramientos suaves.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"40 min de trote suave", detail:"40 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"7×100m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>7×100m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:3, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"30 min de trote suave",detail:"30 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"4×300m al 80% VAM",detail:"Intervalos: <span class='highlight'>4×300m al 80% VAM</span>, recuperación = 2 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"35 min a ritmo constante",detail:"35 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"40 min de trote suave",detail:"40 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"7×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>7×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
-  { week: 4, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"35 min de trote suave", detail:"35 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"3×400m al 80% VAM", detail:"Intervalos: <span class='highlight'>3×400m al 80% VAM</span>, recuperación = 2.5 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"40 min a ritmo constante", detail:"40 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o yoga", detail:"Descanso activo o yoga.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"45 min de trote suave", detail:"45 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"8×100m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>8×100m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:4, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"35 min de trote suave",detail:"35 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"3×400m al 80% VAM",detail:"Intervalos: <span class='highlight'>3×400m al 80% VAM</span>, recuperación = 2.5 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"40 min a ritmo constante",detail:"40 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"45 min de trote suave",detail:"45 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"8×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>8×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
-  { week: 5, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"40 min de trote suave", detail:"40 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"2×600m al 85% VAM", detail:"Intervalos: <span class='highlight'>2×600m al 85% VAM</span>, recuperación = 3 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"45 min a ritmo constante", detail:"45 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o estiramientos", detail:"Descanso activo o estiramientos suaves.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"50 min de trote suave", detail:"50 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"8×150m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>8×150m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:5, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"40 min de trote suave",detail:"40 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"2×600m al 85% VAM",detail:"Intervalos: <span class='highlight'>2×600m al 85% VAM</span>, recuperación = 3 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"45 min a ritmo constante",detail:"45 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"50 min de trote suave",detail:"50 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"8×150m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>8×150m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
-  { week: 6, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"45 min de trote suave", detail:"45 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"2×800m al 85% VAM", detail:"Intervalos: <span class='highlight'>2×800m al 85% VAM</span>, recuperación = 3.5 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"50 min a ritmo constante", detail:"50 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o yoga", detail:"Descanso activo o yoga.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"55 min de trote suave", detail:"55 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"9×150m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>9×150m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:6, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"45 min de trote suave",detail:"45 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"2×800m al 85% VAM",detail:"Intervalos: <span class='highlight'>2×800m al 85% VAM</span>, recuperación = 3.5 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"50 min a ritmo constante",detail:"50 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"55 min de trote suave",detail:"55 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"9×150m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>9×150m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
-  { week: 7, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"50 min de trote suave", detail:"50 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"1×1km al 90% VAM", detail:"Intervalos: <span class='highlight'>1×1km al 90% VAM</span>, recuperación = 4 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"55 min a ritmo constante", detail:"55 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o estiramientos", detail:"Descanso activo o estiramientos suaves.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"60 min de trote suave", detail:"60 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"10×150m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>10×150m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:7, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"50 min de trote suave",detail:"50 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"1×1km al 90% VAM",detail:"Intervalos: <span class='highlight'>1×1km al 90% VAM</span>, recuperación = 4 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"55 min a ritmo constante",detail:"55 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"60 min de trote suave",detail:"60 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"10×150m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>10×150m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
-  { week: 8, days: [
-    { day:1, type:"Trote suave", icon:"🏃", desc:"55 min de trote suave", detail:"55 minutos de trote suave.", rest:false },
-    { day:2, type:"Intervalos", icon:"⚡", desc:"1×1.5km al 90% VAM", detail:"Intervalos: <span class='highlight'>1×1.5km al 90% VAM</span>, recuperación = 4.5 min caminando.", rest:false },
-    { day:3, type:"Ritmo constante", icon:"🎯", desc:"60 min a ritmo constante", detail:"60 minutos de trote a ritmo constante.", rest:false },
-    { day:4, type:"Descanso", icon:"🧘", desc:"Descanso o yoga", detail:"Descanso activo o yoga.", rest:true },
-    { day:5, type:"Trote suave", icon:"🏃", desc:"65 min de trote suave", detail:"65 minutos de trote suave.", rest:false },
-    { day:6, type:"Cuestas", icon:"⛰️", desc:"10×200m en cuesta", detail:"Entrenamiento en cuestas: <span class='highlight'>10×200m</span>, recuperación = bajada caminando.", rest:false },
-    { day:7, type:"Descanso", icon:"😴", desc:"Descanso total", detail:"Descanso total.", rest:true }
+  { week:8, days:[
+    {day:1,type:"Trote suave",icon:"🏃",desc:"55 min de trote suave",detail:"55 minutos de trote suave.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"1×1.5km al 90% VAM",detail:"Intervalos: <span class='highlight'>1×1.5km al 90% VAM</span>, recuperación = 4.5 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"60 min a ritmo constante",detail:"60 minutos de trote a ritmo constante.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"65 min de trote suave",detail:"65 minutos de trote suave.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"10×200m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>10×200m</span>, recuperación = bajada caminando.",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]}
 ];
 
-const TOTAL_SESSIONS = PLAN.reduce((acc,w) => acc + w.days.filter(d=>!d.rest).length, 0);
-let state = { done:{}, photos:{}, notes:{} };
-let activeWeek = 1;
+const TOTAL_SESSIONS = PLAN.reduce((a,w) => a + w.days.filter(d=>!d.rest).length, 0);
 
-function loadState() {
-  try { const s = localStorage.getItem('plan6k_state'); if(s) state = JSON.parse(s); } catch(e){}
-}
-function saveState() {
-  try { localStorage.setItem('plan6k_state', JSON.stringify(state)); }
-  catch(e) { showToast('⚠️ Almacenamiento lleno. Borra alguna foto.'); }
-}
+// ─── State (in-memory, synced with Firestore) ─────────────────────
+let state = {}; // { 'w1d1': { done, notes, photos:[] }, ... }
+let activeWeek = 1;
+let saveTimers = {};
+
 function cardId(w,d) { return 'w'+w+'d'+d; }
-function getDone(w,d) { return !!state.done[cardId(w,d)]; }
-function toggleDone(w,d) {
-  const id = cardId(w,d);
-  state.done[id] = !state.done[id];
-  saveState(); renderAll();
-  showToast(state.done[id] ? '✓ ¡Entrenamiento completado!' : 'Marcado como pendiente');
+function getSession(w,d) { return state[cardId(w,d)] || { done:false, notes:'', photos:[] }; }
+
+// ─── Image compression ────────────────────────────────────────────
+function compressImage(file, maxW=600, quality=0.65) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, maxW / img.width);
+        const w = Math.round(img.width * scale);
+        const h = Math.round(img.height * scale);
+        const canvas = document.createElement('canvas');
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = ev.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
 }
-function getPhotos(w,d) { return state.photos[cardId(w,d)] || []; }
-function addPhoto(w,d,dataUrl) {
-  const id = cardId(w,d);
-  if(!state.photos[id]) state.photos[id]=[];
-  state.photos[id].push(dataUrl);
-  saveState(); renderWeek(activeWeek);
+
+// ─── Firestore operations ─────────────────────────────────────────
+async function loadAllFromFirestore() {
+  try {
+    const snap = await db.collection(COLLECTION).get();
+    snap.forEach(doc => {
+      state[doc.id] = doc.data();
+      if (!state[doc.id].photos) state[doc.id].photos = [];
+    });
+  } catch(e) {
+    console.error('Load error:', e);
+    // fallback to localStorage
+    try {
+      const ls = localStorage.getItem('plan6k_state');
+      if (ls) {
+        const parsed = JSON.parse(ls);
+        // migrate old format
+        if (parsed.done) {
+          Object.keys(parsed.done).forEach(id => {
+            if (!state[id]) state[id] = { done:false, notes:'', photos:[] };
+            state[id].done = !!parsed.done[id];
+            state[id].notes = (parsed.notes && parsed.notes[id]) || '';
+            state[id].photos = (parsed.photos && parsed.photos[id]) || [];
+          });
+        }
+      }
+    } catch(e2){}
+  }
 }
-function deletePhoto(w,d,idx) {
+
+function saveSession(w, d) {
   const id = cardId(w,d);
-  state.photos[id].splice(idx,1);
-  saveState(); renderWeek(activeWeek);
+  const data = state[id] || { done:false, notes:'', photos:[] };
+  setSyncBar('syncing', 'Guardando...');
+  db.collection(COLLECTION).doc(id).set(data)
+    .then(() => setSyncBar('synced', 'Guardado ✓'))
+    .catch(err => {
+      console.error('Save error:', err);
+      setSyncBar('error', 'Error al guardar');
+    });
 }
-function getNotes(w,d) { return state.notes[cardId(w,d)] || ''; }
-function saveNotes(w,d,val) { state.notes[cardId(w,d)]=val; saveState(); }
-function countDone() { return Object.values(state.done).filter(Boolean).length; }
-function weekDoneCount(wIdx) { return PLAN[wIdx].days.filter(d=>!d.rest&&getDone(wIdx+1,d.day)).length; }
-function weekTotalSessions(wIdx) { return PLAN[wIdx].days.filter(d=>!d.rest).length; }
-function isWeekComplete(wIdx) { return weekDoneCount(wIdx)===weekTotalSessions(wIdx); }
+
+function saveSessionDebounced(w, d, delay=1200) {
+  const id = cardId(w,d);
+  clearTimeout(saveTimers[id]);
+  saveTimers[id] = setTimeout(() => saveSession(w,d), delay);
+}
+
+// ─── Sync bar ─────────────────────────────────────────────────────
+let syncHideTimer;
+function setSyncBar(state, msg) {
+  const bar = document.getElementById('sync-bar');
+  const msgEl = document.getElementById('sync-msg');
+  bar.className = 'sync-bar ' + state;
+  msgEl.textContent = msg;
+  clearTimeout(syncHideTimer);
+  if (state === 'synced') syncHideTimer = setTimeout(() => bar.classList.add('hidden'), 2000);
+}
+
+// ─── Mutations ────────────────────────────────────────────────────
+function toggleDone(w, d) {
+  const id = cardId(w,d);
+  if (!state[id]) state[id] = { done:false, notes:'', photos:[] };
+  state[id].done = !state[id].done;
+  saveSession(w, d);
+  renderAll();
+  showToast(state[id].done ? '✓ ¡Entrenamiento completado!' : 'Marcado como pendiente');
+}
+
+async function addPhoto(w, d, file) {
+  const id = cardId(w,d);
+  if (!state[id]) state[id] = { done:false, notes:'', photos:[] };
+  if (state[id].photos.length >= MAX_PHOTOS) { showToast('Máx. '+MAX_PHOTOS+' fotos por sesión'); return; }
+  setSyncBar('syncing', 'Subiendo foto...');
+  try {
+    const compressed = await compressImage(file);
+    state[id].photos.push(compressed);
+    saveSession(w, d);
+    renderWeek(activeWeek);
+  } catch(e) {
+    setSyncBar('error', 'Error al procesar la foto');
+  }
+}
+
+function deletePhoto(w, d, idx) {
+  const id = cardId(w,d);
+  state[id].photos.splice(idx, 1);
+  saveSession(w, d);
+  renderWeek(activeWeek);
+}
+
+function updateNotes(w, d, val) {
+  const id = cardId(w,d);
+  if (!state[id]) state[id] = { done:false, notes:'', photos:[] };
+  state[id].notes = val;
+  saveSessionDebounced(w, d);
+}
+
+// ─── Render ───────────────────────────────────────────────────────
+function countDone() { return Object.values(state).filter(s=>s.done).length; }
+function weekDoneCount(wIdx) { return PLAN[wIdx].days.filter(d=>!d.rest && (state[cardId(wIdx+1,d.day)]||{}).done).length; }
+function weekTotal(wIdx) { return PLAN[wIdx].days.filter(d=>!d.rest).length; }
+function isWeekComplete(wIdx) { return weekDoneCount(wIdx)===weekTotal(wIdx); }
+
 function updateGlobal() {
   const done = countDone();
   const pct = Math.round((done/TOTAL_SESSIONS)*100);
@@ -257,11 +402,13 @@ function updateGlobal() {
   document.getElementById('global-pct').textContent = pct+'%';
   document.getElementById('global-count').textContent = done+' / '+TOTAL_SESSIONS+' sesiones';
 }
+
 function setActiveWeek(w) {
   activeWeek = w;
   document.querySelectorAll('.week-tab').forEach(t=>t.classList.toggle('active',parseInt(t.dataset.week)===w));
   document.querySelectorAll('.week-section').forEach(s=>s.classList.toggle('active',parseInt(s.dataset.week)===w));
 }
+
 function buildTabs() {
   const cont = document.getElementById('week-tabs');
   cont.innerHTML = '';
@@ -274,76 +421,7 @@ function buildTabs() {
     cont.appendChild(btn);
   });
 }
-function renderWeek(wNum) {
-  const wIdx = wNum-1;
-  const week = PLAN[wIdx];
-  const section = document.querySelector('.week-section[data-week="'+wNum+'"]');
-  if(!section) return;
-  const done = weekDoneCount(wIdx);
-  const total = weekTotalSessions(wIdx);
-  const pct = total>0?Math.round((done/total)*100):0;
-  section.innerHTML = '<div class="week-header"><div class="week-title">SEMANA <span>'+wNum+'</span></div><div class="week-stats"><strong>'+done+'/'+total+'</strong>sesiones</div></div><div class="week-progress-wrap"><div class="week-progress-track"><div class="week-progress-fill" style="width:'+pct+'%"></div></div><div class="week-progress-label">'+pct+'%</div></div>'+week.days.map(d=>buildDayCard(wNum,d)).join('');
-  section.querySelectorAll('.check-btn').forEach(btn=>{
-    btn.onclick=(e)=>{e.stopPropagation();toggleDone(parseInt(btn.dataset.w),parseInt(btn.dataset.d));};
-  });
-  section.querySelectorAll('.day-header').forEach(hdr=>{
-    hdr.onclick=()=>hdr.closest('.day-card').classList.toggle('expanded');
-  });
-  section.querySelectorAll('.file-input').forEach(input=>{
-    input.onchange=(e)=>{
-      const w=parseInt(input.dataset.w), d=parseInt(input.dataset.d);
-      Array.from(e.target.files).forEach(file=>{
-        const reader=new FileReader();
-        reader.onload=(ev)=>addPhoto(w,d,ev.target.result);
-        reader.readAsDataURL(file);
-      });
-      input.value='';
-    };
-  });
-  section.querySelectorAll('.photo-delete').forEach(btn=>{
-    btn.onclick=(e)=>{e.stopPropagation();deletePhoto(parseInt(btn.dataset.w),parseInt(btn.dataset.d),parseInt(btn.dataset.idx));};
-  });
-  section.querySelectorAll('.photo-thumb img').forEach(img=>{
-    img.onclick=()=>openLightbox(img.src);
-  });
-  section.querySelectorAll('.notes-area').forEach(ta=>{
-    ta.oninput=()=>saveNotes(parseInt(ta.dataset.w),parseInt(ta.dataset.d),ta.value);
-  });
-  const tab = document.querySelector('.week-tab[data-week="'+wNum+'"]');
-  if(tab) {
-    const complete = isWeekComplete(wIdx);
-    tab.classList.toggle('completed',complete);
-    tab.innerHTML = complete ? '<span class="week-dot"></span>S'+wNum : 'S'+wNum;
-    if(activeWeek===wNum) tab.classList.add('active');
-  }
-}
-function buildDayCard(wNum,d) {
-  const done = getDone(wNum,d.day);
-  const photos = getPhotos(wNum,d.day);
-  const notes = getNotes(wNum,d.day);
-  const classes = ['day-card',done?'done':'',d.rest?'rest':''].filter(Boolean).join(' ');
-  const photosHtml = d.rest ? '' :
-    '<div class="photos-section">'+
-    '<div class="photos-label">📸 Fotos'+(photos.length>0?' ('+photos.length+')':'')+'</div>'+
-    (photos.length>0 ? '<div class="photo-grid">'+photos.map((src,idx)=>
-      '<div class="photo-thumb"><img src="'+src+'" alt="foto"><button class="photo-delete" data-w="'+wNum+'" data-d="'+d.day+'" data-idx="'+idx+'">&#x2715;</button></div>'
-    ).join('')+'</div>' : '<div class="no-photos">Sin fotos aún</div>')+
-    '<label><button class="add-photo-btn" onclick="this.closest(\'label\').querySelector(\'input\').click();return false;">+ Añadir foto</button>'+
-    '<input type="file" class="file-input" accept="image/*" multiple data-w="'+wNum+'" data-d="'+d.day+'"></label>'+
-    '</div>'+
-    '<textarea class="notes-area" data-w="'+wNum+'" data-d="'+d.day+'" placeholder="Notas: tiempo, sensaciones, ritmo…">'+notes+'</textarea>';
-  return '<div class="'+classes+'">'+
-    '<div class="day-header">'+
-    '<span class="day-badge">D'+d.day+'</span>'+
-    '<span class="day-type-icon">'+d.icon+'</span>'+
-    '<div class="day-info"><div class="day-type">'+d.type+'</div><div class="day-desc">'+d.desc+'</div></div>'+
-    '<div class="day-actions">'+
-    (!d.rest?'<button class="check-btn" data-w="'+wNum+'" data-d="'+d.day+'">'+(done?'✓':'')+'</button>':'')+
-    '<button class="expand-btn">&#9662;</button>'+
-    '</div></div>'+
-    '<div class="day-body"><div class="day-full-desc">'+d.detail+'</div>'+photosHtml+'</div>'+
-    '</div>';
-}
+
 function buildWeekSections() {
   const cont = document.getElementById('weeks-container');
   cont.innerHTML = '';
@@ -354,28 +432,140 @@ function buildWeekSections() {
     cont.appendChild(s);
   });
 }
+
+function renderWeek(wNum) {
+  const wIdx = wNum-1;
+  const week = PLAN[wIdx];
+  const section = document.querySelector('.week-section[data-week="'+wNum+'"]');
+  if (!section) return;
+  const done = weekDoneCount(wIdx);
+  const total = weekTotal(wIdx);
+  const pct = total>0?Math.round((done/total)*100):0;
+
+  section.innerHTML =
+    '<div class="week-header">'+
+      '<div class="week-title">SEMANA <span>'+wNum+'</span></div>'+
+      '<div class="week-stats"><strong>'+done+'/'+total+'</strong>sesiones</div>'+
+    '</div>'+
+    '<div class="week-progress-wrap">'+
+      '<div class="week-progress-track"><div class="week-progress-fill" style="width:'+pct+'%"></div></div>'+
+      '<div class="week-progress-label">'+pct+'%</div>'+
+    '</div>'+
+    week.days.map(d => buildDayCard(wNum, d)).join('');
+
+  section.querySelectorAll('.check-btn').forEach(btn => {
+    btn.onclick = e => { e.stopPropagation(); toggleDone(parseInt(btn.dataset.w), parseInt(btn.dataset.d)); };
+  });
+  section.querySelectorAll('.day-header').forEach(hdr => {
+    hdr.onclick = () => hdr.closest('.day-card').classList.toggle('expanded');
+  });
+  section.querySelectorAll('.file-input').forEach(input => {
+    input.onchange = e => {
+      const w=parseInt(input.dataset.w), d=parseInt(input.dataset.d);
+      Array.from(e.target.files).forEach(file => addPhoto(w, d, file));
+      input.value='';
+    };
+  });
+  section.querySelectorAll('.photo-delete').forEach(btn => {
+    btn.onclick = e => { e.stopPropagation(); deletePhoto(parseInt(btn.dataset.w), parseInt(btn.dataset.d), parseInt(btn.dataset.idx)); };
+  });
+  section.querySelectorAll('.photo-thumb img').forEach(img => {
+    img.onclick = () => openLightbox(img.src);
+  });
+  section.querySelectorAll('.notes-area').forEach(ta => {
+    ta.oninput = () => updateNotes(parseInt(ta.dataset.w), parseInt(ta.dataset.d), ta.value);
+  });
+
+  const tab = document.querySelector('.week-tab[data-week="'+wNum+'"]');
+  if (tab) {
+    const complete = isWeekComplete(wIdx);
+    tab.classList.toggle('completed', complete);
+    tab.innerHTML = complete ? '<span class="week-dot"></span>S'+wNum : 'S'+wNum;
+    if (activeWeek===wNum) tab.classList.add('active');
+  }
+}
+
+function buildDayCard(wNum, d) {
+  const sess = getSession(wNum, d.day);
+  const done = sess.done;
+  const photos = sess.photos || [];
+  const notes = sess.notes || '';
+  const atLimit = photos.length >= MAX_PHOTOS;
+  const classes = ['day-card', done?'done':'', d.rest?'rest':''].filter(Boolean).join(' ');
+
+  const photosHtml = d.rest ? '' :
+    '<div>'+
+    '<div class="photos-label">📸 Fotos'+(photos.length>0?' ('+photos.length+'/'+MAX_PHOTOS+')':'')+'</div>'+
+    (photos.length>0 ?
+      '<div class="photo-grid">'+photos.map((src,idx)=>
+        '<div class="photo-thumb">'+
+        '<img src="'+src+'" alt="foto">'+
+        '<button class="photo-delete" data-w="'+wNum+'" data-d="'+d.day+'" data-idx="'+idx+'">&#x2715;</button>'+
+        '</div>'
+      ).join('')+'</div>'
+    : '<div class="no-photos">Sin fotos aún</div>')+
+    (atLimit ? '<div class="photo-limit">Límite de '+MAX_PHOTOS+' fotos alcanzado</div>' :
+      '<label>'+
+      '<button class="add-photo-btn"'+(atLimit?' disabled':'')+' onclick="this.closest(\'label\').querySelector(\'input\').click();return false;">+ Añadir foto</button>'+
+      '<input type="file" class="file-input" accept="image/*" multiple data-w="'+wNum+'" data-d="'+d.day+'">'+
+      '</label>'
+    )+
+    '<textarea class="notes-area" data-w="'+wNum+'" data-d="'+d.day+'" placeholder="Notas: tiempo, sensaciones, ritmo…">'+notes+'</textarea>'+
+    '</div>';
+
+  return '<div class="'+classes+'">'+
+    '<div class="day-header">'+
+      '<span class="day-badge">D'+d.day+'</span>'+
+      '<span class="day-type-icon">'+d.icon+'</span>'+
+      '<div class="day-info">'+
+        '<div class="day-type">'+d.type+'</div>'+
+        '<div class="day-desc">'+d.desc+'</div>'+
+      '</div>'+
+      '<div class="day-actions">'+
+        (!d.rest?'<button class="check-btn" data-w="'+wNum+'" data-d="'+d.day+'">'+(done?'✓':'')+'</button>':'')+
+        '<button class="expand-btn">&#9662;</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="day-body">'+
+      '<div class="day-full-desc">'+d.detail+'</div>'+
+      photosHtml+
+    '</div>'+
+  '</div>';
+}
+
 function renderAll() {
   for(let i=1;i<=8;i++) renderWeek(i);
   updateGlobal();
 }
+
 function openLightbox(src) {
   document.getElementById('lightbox-img').src = src;
   document.getElementById('lightbox').classList.add('open');
 }
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-document.getElementById('lightbox').onclick=(e)=>{if(e.target===e.currentTarget)closeLightbox();};
+document.getElementById('lightbox').onclick = e => { if(e.target===e.currentTarget) closeLightbox(); };
+
 let toastTimer;
 function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
 }
-loadState(); buildTabs(); buildWeekSections(); renderAll();
-</script>
-<script>
-if("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js").then(() => console.log("SW registered"));
+
+// ─── Init ─────────────────────────────────────────────────────────
+async function init() {
+  buildTabs();
+  buildWeekSections();
+  await loadAllFromFirestore();
+  renderAll();
+  document.getElementById('loading-screen').classList.add('hidden');
+}
+
+init();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
 }
 </script>
 </body>
