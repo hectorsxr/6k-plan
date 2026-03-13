@@ -186,76 +186,76 @@ const MAX_PHOTOS = 5;
 // ─── Plan data ────────────────────────────────────────────────────
 const PLAN = [
   { week:1, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"20 min de trote suave",detail:"20 minutos de trote suave. Mantén un ritmo conversacional — deberías poder hablar sin quedarte sin aliento.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"4×200m al 75% VAM",detail:"Intervalos: <span class='highlight'>4×200m al 75% VAM</span>, recuperación = 1.5 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"25 min a ritmo constante",detail:"25 minutos de trote a ritmo constante.",rest:false},
-    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"30 min de trote suave",detail:"30 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"5×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>5×100m</span>, recuperación = bajada caminando.",rest:false},
-    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total. El cuerpo se adapta mientras descansas.",rest:true}
+    {day:1,type:"Trote suave",icon:"🏃",desc:"20 min · 6:15-6:30 /km",detail:"20 minutos de trote suave. Ritmo <span class='highlight'>6:15-6:30 min/km</span> — deberías poder mantener una conversación sin dificultad. No te pases de velocidad, este ritmo construye la base capilar.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"4×200m · 6:00 /km · 1:12/rep",detail:"Intervalos: <span class='highlight'>4×200m al 75% VAM</span> · Ritmo objetivo: <span class='highlight'>6:00 min/km</span> · Tiempo por repetición: <span class='highlight'>1:12 min</span> · Recuperación: 1:30 min caminando entre series.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"25 min · 5:45 /km",detail:"25 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:45 min/km</span>. Es tu ritmo de crucero actual — trabaja la eficiencia sin forzar.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves. Trabaja la movilidad de caderas y gemelos.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"30 min · 6:15-6:30 /km",detail:"30 minutos de trote suave. Ritmo <span class='highlight'>6:15-6:30 min/km</span>. El día más largo de la semana — imprescindible que no corras más rápido de 6:15, si no hipotecas la recuperación para las series.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"5×100m · Esfuerzo 8/10",detail:"Cuestas: <span class='highlight'>5×100m</span> · Esfuerzo <span class='highlight'>8/10</span> · Foco en subida explosiva. Recuperación = bajada caminando (innegociable para limpiar el lactato).",rest:false},
+    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total. El cuerpo se adapta y mejora mientras descansas.",rest:true}
   ]},
   { week:2, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"25 min de trote suave",detail:"25 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"5×200m al 75% VAM",detail:"Intervalos: <span class='highlight'>5×200m al 75% VAM</span>, recuperación = 1.5 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"30 min a ritmo constante",detail:"30 minutos de trote a ritmo constante.",rest:false},
-    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"35 min de trote suave",detail:"35 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"6×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>6×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:1,type:"Trote suave",icon:"🏃",desc:"25 min · 6:15-6:30 /km",detail:"25 minutos de trote suave. Ritmo <span class='highlight'>6:15-6:30 min/km</span>.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"5×200m · 6:00 /km · 1:12/rep",detail:"Intervalos: <span class='highlight'>5×200m al 75% VAM</span> · Ritmo objetivo: <span class='highlight'>6:00 min/km</span> · Tiempo por repetición: <span class='highlight'>1:12 min</span> · Recuperación: 1:30 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"30 min · 5:40 /km",detail:"30 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:40 min/km</span> — ligeramente más rápido que la semana anterior.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga. Ideal para trabajar flexibilidad y prevenir lesiones.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"35 min · 6:15-6:30 /km",detail:"35 minutos de trote suave. Ritmo <span class='highlight'>6:15-6:30 min/km</span>.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"6×100m · Esfuerzo 8/10",detail:"Cuestas: <span class='highlight'>6×100m</span> · Esfuerzo <span class='highlight'>8/10</span> · Foco en técnica de subida. Recuperación = bajada caminando.",rest:false},
     {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
   { week:3, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"30 min de trote suave",detail:"30 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"4×300m al 80% VAM",detail:"Intervalos: <span class='highlight'>4×300m al 80% VAM</span>, recuperación = 2 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"35 min a ritmo constante",detail:"35 minutos de trote a ritmo constante.",rest:false},
+    {day:1,type:"Trote suave",icon:"🏃",desc:"30 min · 6:10-6:25 /km",detail:"30 minutos de trote suave. Ritmo <span class='highlight'>6:10-6:25 min/km</span> — el rango se ajusta ligeramente al alza.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"4×300m · 5:37 /km · 1:41/rep",detail:"Intervalos: <span class='highlight'>4×300m al 80% VAM</span> · Ritmo objetivo: <span class='highlight'>5:37 min/km</span> · Tiempo por repetición: <span class='highlight'>1:41 min</span> · Recuperación: 2 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"35 min · 5:35 /km",detail:"35 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:35 min/km</span> — entrando ya en zona de umbral.",rest:false},
     {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"40 min de trote suave",detail:"40 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"7×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>7×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"40 min · 6:10-6:25 /km",detail:"40 minutos de trote suave. Ritmo <span class='highlight'>6:10-6:25 min/km</span>.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"7×100m · Esfuerzo 9/10",detail:"Cuestas: <span class='highlight'>7×100m</span> · Esfuerzo <span class='highlight'>9/10</span> · Potencia reactiva — busca explosividad en cada zancada. Recuperación = bajada caminando.",rest:false},
     {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
   { week:4, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"35 min de trote suave",detail:"35 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"3×400m al 80% VAM",detail:"Intervalos: <span class='highlight'>3×400m al 80% VAM</span>, recuperación = 2.5 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"40 min a ritmo constante",detail:"40 minutos de trote a ritmo constante.",rest:false},
+    {day:1,type:"Trote suave",icon:"🏃",desc:"35 min · 6:10-6:25 /km",detail:"35 minutos de trote suave. Ritmo <span class='highlight'>6:10-6:25 min/km</span>.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"3×400m · 5:37 /km · 2:15/rep",detail:"Intervalos: <span class='highlight'>3×400m al 80% VAM</span> · Ritmo objetivo: <span class='highlight'>5:37 min/km</span> · Tiempo por repetición: <span class='highlight'>2:15 min</span> · Recuperación: 2:30 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"40 min · 5:30 /km",detail:"40 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:30 min/km</span>. Si esto te resulta excesivamente fácil (RPE menor de 5/10), reduce 5 seg a todos tus ritmos objetivo.",rest:false},
     {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"45 min de trote suave",detail:"45 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"8×100m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>8×100m</span>, recuperación = bajada caminando.",rest:false},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"45 min · 6:10-6:25 /km",detail:"45 minutos de trote suave. Ritmo <span class='highlight'>6:10-6:25 min/km</span>.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"8×100m · Esfuerzo 9/10",detail:"Cuestas: <span class='highlight'>8×100m</span> · Esfuerzo <span class='highlight'>9/10</span>. Recuperación = bajada caminando.",rest:false},
     {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
   { week:5, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"40 min de trote suave",detail:"40 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"2×600m al 85% VAM",detail:"Intervalos: <span class='highlight'>2×600m al 85% VAM</span>, recuperación = 3 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"45 min a ritmo constante",detail:"45 minutos de trote a ritmo constante.",rest:false},
+    {day:1,type:"Trote suave",icon:"🏃",desc:"40 min · 6:05-6:20 /km",detail:"40 minutos de trote suave. Ritmo <span class='highlight'>6:05-6:20 min/km</span>.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"2×600m · 5:18 /km · 3:11/rep",detail:"Intervalos: <span class='highlight'>2×600m al 85% VAM</span> · Ritmo objetivo: <span class='highlight'>5:18 min/km</span> · Tiempo por repetición: <span class='highlight'>3:11 min</span> · Recuperación: 3 min caminando. Aquí los ritmos empiezan a romper tu zona de confort.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"45 min · 5:25 /km",detail:"45 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:25 min/km</span> — el puente hacia el ritmo diana.",rest:false},
     {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"50 min de trote suave",detail:"50 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"8×150m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>8×150m</span>, recuperación = bajada caminando.",rest:false},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"50 min · 6:05-6:20 /km",detail:"50 minutos de trote suave. Ritmo <span class='highlight'>6:05-6:20 min/km</span>.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"8×150m · Esfuerzo 9/10",detail:"Cuestas: <span class='highlight'>8×150m</span> · Esfuerzo <span class='highlight'>9/10</span> · Resistencia en pendiente. Recuperación = bajada caminando.",rest:false},
     {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
   { week:6, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"45 min de trote suave",detail:"45 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"2×800m al 85% VAM",detail:"Intervalos: <span class='highlight'>2×800m al 85% VAM</span>, recuperación = 3.5 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"50 min a ritmo constante",detail:"50 minutos de trote a ritmo constante.",rest:false},
+    {day:1,type:"Trote suave",icon:"🏃",desc:"45 min · 6:05-6:20 /km",detail:"45 minutos de trote suave. Ritmo <span class='highlight'>6:05-6:20 min/km</span>.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"2×800m · 5:18 /km · 4:14/rep",detail:"Intervalos: <span class='highlight'>2×800m al 85% VAM</span> · Ritmo objetivo: <span class='highlight'>5:18 min/km</span> · Tiempo por repetición: <span class='highlight'>4:14 min</span> · Recuperación: 3:30 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"50 min · 5:15 /km",detail:"50 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:15 min/km</span> — muy cercano al ritmo diana de 5:00.",rest:false},
     {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"55 min de trote suave",detail:"55 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"9×150m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>9×150m</span>, recuperación = bajada caminando.",rest:false},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"55 min · 6:05-6:20 /km",detail:"55 minutos de trote suave. Ritmo <span class='highlight'>6:05-6:20 min/km</span>.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"9×150m · Esfuerzo 9/10",detail:"Cuestas: <span class='highlight'>9×150m</span> · Esfuerzo <span class='highlight'>9/10</span>. Recuperación = bajada caminando.",rest:false},
     {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
   { week:7, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"50 min de trote suave",detail:"50 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"1×1km al 90% VAM",detail:"Intervalos: <span class='highlight'>1×1km al 90% VAM</span>, recuperación = 4 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"55 min a ritmo constante",detail:"55 minutos de trote a ritmo constante.",rest:false},
+    {day:1,type:"Trote suave",icon:"🏃",desc:"50 min · 6:05-6:20 /km",detail:"50 minutos de trote suave. Ritmo <span class='highlight'>6:05-6:20 min/km</span>.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"1×1km · 5:00 /km · 5:00 min",detail:"Intervalo: <span class='highlight'>1×1km al 90% VAM</span> · Ritmo objetivo: <span class='highlight'>5:00 min/km</span> · Tiempo: <span class='highlight'>5:00 min</span> exactos. Este es el ritmo diana — mecánizalo. Recuperación: 4 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"55 min · 5:10 /km",detail:"55 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:10 min/km</span>.",rest:false},
     {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o estiramientos",detail:"Descanso activo o estiramientos suaves.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"60 min de trote suave",detail:"60 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"10×150m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>10×150m</span>, recuperación = bajada caminando.",rest:false},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"60 min · 6:10-6:25 /km",detail:"60 minutos de trote suave. Ritmo <span class='highlight'>6:10-6:25 min/km</span>.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"10×150m · Esfuerzo 8/10",detail:"Cuestas: <span class='highlight'>10×150m</span> · Esfuerzo <span class='highlight'>8/10</span> · Activación mecánica — ya no es máxima intensidad, es afinación. Recuperación = bajada caminando.",rest:false},
     {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
   ]},
   { week:8, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"55 min de trote suave",detail:"55 minutos de trote suave.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"1×1.5km al 90% VAM",detail:"Intervalos: <span class='highlight'>1×1.5km al 90% VAM</span>, recuperación = 4.5 min caminando.",rest:false},
-    {day:3,type:"Ritmo constante",icon:"🎯",desc:"60 min a ritmo constante",detail:"60 minutos de trote a ritmo constante.",rest:false},
-    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga.",rest:true},
-    {day:5,type:"Trote suave",icon:"🏃",desc:"65 min de trote suave",detail:"65 minutos de trote suave.",rest:false},
-    {day:6,type:"Cuestas",icon:"⛰️",desc:"10×200m en cuesta",detail:"Entrenamiento en cuestas: <span class='highlight'>10×200m</span>, recuperación = bajada caminando.",rest:false},
-    {day:7,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total.",rest:true}
+    {day:1,type:"Trote suave",icon:"🏃",desc:"55 min · 6:20-6:30 /km",detail:"55 minutos de trote suave. Ritmo <span class='highlight'>6:20-6:30 min/km</span> — más lento que semanas anteriores, es semana de tapering.",rest:false},
+    {day:2,type:"Intervalos",icon:"⚡",desc:"1×1.5km · 5:00 /km · 7:30 min",detail:"Intervalo: <span class='highlight'>1×1.5km al 90% VAM</span> · Ritmo objetivo: <span class='highlight'>5:00 min/km</span> · Tiempo: <span class='highlight'>7:30 min</span>. Último trabajo de calidad — confirma que el ritmo diana está interiorizado. Recuperación: 4:30 min caminando.",rest:false},
+    {day:3,type:"Ritmo constante",icon:"🎯",desc:"60 min · 5:10-5:20 /km",detail:"60 minutos de trote a ritmo constante. Ritmo objetivo: <span class='highlight'>5:10-5:20 min/km</span>.",rest:false},
+    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o yoga",detail:"Descanso activo o yoga. Cuida especialmente la movilidad de tobillos y cadera.",rest:true},
+    {day:5,type:"Trote suave",icon:"🏃",desc:"65 min · 6:30 /km · MUY RELAJADO",detail:"65 minutos de trote muy suave. Ritmo <span class='highlight'>6:30 min/km</span> o más lento. Sin estrés, solo mantener las piernas activas antes del objetivo.",rest:false},
+    {day:6,type:"Cuestas",icon:"⛰️",desc:"10×200m · Esfuerzo 7/10",detail:"Cuestas: <span class='highlight'>10×200m</span> · Esfuerzo <span class='highlight'>7/10</span> — solo soltar piernas. Sin agotarse. Recuperación = bajada caminando.",rest:false},
+    {day:7,type:"🏁 OBJETIVO",icon:"🏁",desc:"6K en 30:00 · 5:00 /km",detail:"<strong>¡DÍA DE LA CARRERA!</strong> Objetivo: <span class='highlight'>6 km en 30:00</span> · Ritmo: <span class='highlight'>5:00 min/km</span> constante. Mantén cadencia de ~180 pasos/min y evita salir demasiado rápido en el primer kilómetro.",rest:false}
   ]}
 ];
 
