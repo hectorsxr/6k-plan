@@ -120,6 +120,60 @@
   .toast.show { transform: translateX(-50%) translateY(0); }
   .no-photos { font-size: 12px; color: var(--text3); margin-bottom: 10px; }
 
+  /* STRENGTH TAB */
+  .week-tab.strength { border-color: #7c3aed; color: #a78bfa; }
+  .week-tab.strength.active { background: #7c3aed; border-color: #7c3aed; color: #fff; }
+
+  /* STRENGTH SECTION */
+  .strength-section { display: none; padding: 16px 20px 0; }
+  .strength-section.active { display: block; }
+  .strength-header { margin-bottom: 6px; }
+  .strength-title { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 900; line-height: 1; }
+  .strength-title span { color: #a78bfa; }
+  .strength-subtitle { font-size: 13px; color: var(--text3); margin-top: 4px; margin-bottom: 16px; }
+
+  .when-to-do { background: #1a1226; border: 1px solid #4c1d95; border-radius: var(--radius); padding: 12px 16px; margin-bottom: 16px; }
+  .when-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: #a78bfa; text-transform: uppercase; margin-bottom: 8px; }
+  .when-items { display: flex; flex-direction: column; gap: 5px; }
+  .when-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); }
+  .when-item span:first-child { font-size: 16px; }
+
+  .block-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+  .block-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
+  .block-number { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 900; flex-shrink: 0; }
+  .block-info { flex: 1; }
+  .block-name { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; line-height: 1.1; }
+  .block-meta { font-size: 12px; color: var(--text3); margin-top: 2px; }
+  .block-expand { background: transparent; border: none; color: var(--text3); cursor: pointer; font-size: 12px; padding: 4px; transition: transform 0.2s; }
+  .block-card.expanded .block-expand { transform: rotate(180deg); }
+  .block-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .block-card.expanded .block-body { display: block; }
+
+  .b1 .block-number { background: #14532d; color: #86efac; }
+  .b1 .block-name { color: #86efac; }
+  .b2 .block-number { background: #7c2d12; color: #fdba74; }
+  .b2 .block-name { color: #fdba74; }
+  .b3 .block-number { background: #1e3a5f; color: #93c5fd; }
+  .b3 .block-name { color: #93c5fd; }
+  .b4 .block-number { background: #4c1d95; color: #c4b5fd; }
+  .b4 .block-name { color: #c4b5fd; }
+
+  .exercise-list { padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .exercise-item { display: flex; align-items: flex-start; gap: 10px; }
+  .ex-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+  .b1 .ex-dot { background: #86efac; }
+  .b2 .ex-dot { background: #fdba74; }
+  .b3 .ex-dot { background: #93c5fd; }
+  .b4 .ex-dot { background: #c4b5fd; }
+  .ex-info { flex: 1; }
+  .ex-name { font-size: 14px; color: var(--text); font-weight: 500; line-height: 1.3; }
+  .ex-reps { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .block-note { margin-top: 14px; padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.5; }
+  .b1 .block-note { background: #0c1a0c; color: #86efac; }
+  .b2 .block-note { background: #1a0e05; color: #fdba74; }
+  .b3 .block-note { background: #0a1628; color: #93c5fd; }
+  .b4 .block-note { background: #1a0e2e; color: #c4b5fd; }
+
   @media (max-width: 380px) {
     .app-title { font-size: 24px; }
     .week-title { font-size: 28px; }
@@ -157,6 +211,105 @@
 
 <div class="week-tabs" id="week-tabs"></div>
 <div id="weeks-container"></div>
+
+<!-- Strength section -->
+<div class="strength-section" id="strength-section">
+  <div class="strength-header">
+    <div class="strength-title">FUERZA <span>ESPECÍFICA</span></div>
+    <div class="strength-subtitle">Sesión completa · 30 min en casa · 1-2 veces por semana</div>
+  </div>
+
+  <div class="when-to-do">
+    <div class="when-title">💡 Cuándo hacerla</div>
+    <div class="when-items">
+      <div class="when-item"><span>🏃</span><span>Tras un rodaje suave (nunca antes de series)</span></div>
+      <div class="when-item"><span>📅</span><span>1-2 veces por semana · Días 1 o 5 del plan</span></div>
+      <div class="when-item"><span>🚫</span><span>No el mismo día de intervalos o cuestas</span></div>
+    </div>
+  </div>
+
+  <!-- Bloque 1: Activación -->
+  <div class="block-card b1">
+    <div class="block-header" onclick="this.closest('.block-card').classList.toggle('expanded')">
+      <div class="block-number">1</div>
+      <div class="block-info">
+        <div class="block-name">ACTIVACIÓN</div>
+        <div class="block-meta">5 min · 2 vueltas · Sin descanso largo</div>
+      </div>
+      <button class="block-expand">&#9662;</button>
+    </div>
+    <div class="block-body">
+      <div class="exercise-list">
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Puente glúteo unilateral</div><div class="ex-reps">x12 por pierna</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Elevaciones de talón lentas</div><div class="ex-reps">x15 repeticiones</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Plancha frontal</div><div class="ex-reps">30 segundos</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Sentadilla controlada</div><div class="ex-reps">x12 repeticiones</div></div></div>
+      </div>
+      <div class="block-note">Activa glúteos y estabilizadores antes de cargar. Ritmo controlado en cada ejercicio, sin prisa.</div>
+    </div>
+  </div>
+
+  <!-- Bloque 2: Fuerza Unilateral -->
+  <div class="block-card b2">
+    <div class="block-header" onclick="this.closest('.block-card').classList.toggle('expanded')">
+      <div class="block-number">2</div>
+      <div class="block-info">
+        <div class="block-name">FUERZA UNILATERAL</div>
+        <div class="block-meta">15 min · Descanso 60-90" entre series</div>
+      </div>
+      <button class="block-expand">&#9662;</button>
+    </div>
+    <div class="block-body">
+      <div class="exercise-list">
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Zancada atrás</div><div class="ex-reps">x10 por pierna · 3 series</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Peso muerto unilateral</div><div class="ex-reps">x8-10 por pierna · 3 series</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Step-up alto</div><div class="ex-reps">x10 por pierna · 3 series</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Sentadilla búlgara</div><div class="ex-reps">x8 por pierna · 3 series</div></div></div>
+      </div>
+      <div class="block-note">El bloque más importante. Trabaja la simetría entre piernas — el glúteo medio débil es una de las principales causas de lesiones y pérdida de eficiencia en carrera.</div>
+    </div>
+  </div>
+
+  <!-- Bloque 3: Core Estable -->
+  <div class="block-card b3">
+    <div class="block-header" onclick="this.closest('.block-card').classList.toggle('expanded')">
+      <div class="block-number">3</div>
+      <div class="block-info">
+        <div class="block-name">CORE ESTABLE</div>
+        <div class="block-meta">5 min · 1-2 vueltas</div>
+      </div>
+      <button class="block-expand">&#9662;</button>
+    </div>
+    <div class="block-body">
+      <div class="exercise-list">
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Plancha lateral</div><div class="ex-reps">30 segundos por lado</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Dead bug</div><div class="ex-reps">x10 por lado</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Pallof press</div><div class="ex-reps">x10 por lado</div></div></div>
+      </div>
+      <div class="block-note">Core antirotacional — exactamente lo que necesitas para mantener la postura erguida en los últimos kilómetros sin desperdiciar energía lateral.</div>
+    </div>
+  </div>
+
+  <!-- Bloque 4: Reactividad -->
+  <div class="block-card b4">
+    <div class="block-header" onclick="this.closest('.block-card').classList.toggle('expanded')">
+      <div class="block-number">4</div>
+      <div class="block-info">
+        <div class="block-name">REACTIVIDAD</div>
+        <div class="block-meta">5 min · Calidad sobre cantidad</div>
+      </div>
+      <button class="block-expand">&#9662;</button>
+    </div>
+    <div class="block-body">
+      <div class="exercise-list">
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Saltos cortos reactivos</div><div class="ex-reps">3 series × 20 segundos</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Skipping técnico</div><div class="ex-reps">3 series × 20 segundos</div></div></div>
+        <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Multisaltos cortos</div><div class="ex-reps">3 series × 8 repeticiones</div></div></div>
+      </div>
+      <div class="block-note">Entrena la stiffness del tendón de Aquiles y la elasticidad del pie. Mejora directamente la economía de carrera a 5:00 min/km. Prioriza la técnica sobre la velocidad.</div>
+    </div>
+  </div>
+</div>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
@@ -405,8 +558,24 @@ function updateGlobal() {
 
 function setActiveWeek(w) {
   activeWeek = w;
-  document.querySelectorAll('.week-tab').forEach(t=>t.classList.toggle('active',parseInt(t.dataset.week)===w));
+  document.querySelectorAll('.week-tab:not(.strength)').forEach(t=>t.classList.toggle('active',parseInt(t.dataset.week)===w));
+  document.getElementById('strength-tab').classList.remove('active');
   document.querySelectorAll('.week-section').forEach(s=>s.classList.toggle('active',parseInt(s.dataset.week)===w));
+  document.getElementById('strength-section').classList.remove('active');
+}
+
+function setStrengthActive() {
+  document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('strength-tab').classList.add('active');
+  document.querySelectorAll('.week-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('strength-section').classList.add('active');
+}
+
+function getFirstIncompleteWeek() {
+  for (let i = 0; i < PLAN.length; i++) {
+    if (!isWeekComplete(i)) return i + 1;
+  }
+  return PLAN.length; // all done, show last week
 }
 
 function buildTabs() {
@@ -420,6 +589,13 @@ function buildTabs() {
     btn.textContent = 'S'+(i+1);
     cont.appendChild(btn);
   });
+  // Strength tab
+  const sb = document.createElement('button');
+  sb.className = 'week-tab strength';
+  sb.id = 'strength-tab';
+  sb.onclick = () => setStrengthActive();
+  sb.textContent = '💪 FUERZA';
+  cont.appendChild(sb);
 }
 
 function buildWeekSections() {
@@ -559,6 +735,14 @@ async function init() {
   buildWeekSections();
   await loadAllFromFirestore();
   renderAll();
+  // Auto-jump to first incomplete week
+  const target = getFirstIncompleteWeek();
+  if (target !== 1) {
+    setActiveWeek(target);
+    // Scroll the tab into view
+    const tab = document.querySelector(`.week-tab[data-week="${target}"]`);
+    if (tab) tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
   document.getElementById('loading-screen').classList.add('hidden');
 }
 
