@@ -124,9 +124,40 @@
   .week-tab.strength { border-color: #7c3aed; color: #a78bfa; }
   .week-tab.strength.active { background: #7c3aed; border-color: #7c3aed; color: #fff; }
 
+  /* STRATEGY TAB */
+  .week-tab.strategy { border-color: #0f766e; color: #5eead4; }
+  .week-tab.strategy.active { background: #0f766e; border-color: #0f766e; color: #fff; }
+
   /* STRENGTH SECTION */
   .strength-section { display: none; padding: 16px 20px 0; }
   .strength-section.active { display: block; }
+
+  /* STRATEGY SECTION */
+  .strategy-section { display: none; padding: 16px 20px 24px; }
+  .strategy-section.active { display: block; }
+  .strategy-title { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 900; line-height: 1; }
+  .strategy-title span { color: #5eead4; }
+  .strategy-subtitle { font-size: 13px; color: var(--text3); margin-top: 4px; margin-bottom: 16px; }
+  .strategy-card { background: linear-gradient(180deg, #0f172a, #111827); border: 1px solid #134e4a; border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px; }
+  .strategy-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; letter-spacing: 0.4px; color: #5eead4; margin-bottom: 10px; }
+  .strategy-card p { font-size: 14px; line-height: 1.55; color: var(--text2); }
+  .strategy-list { display: flex; flex-direction: column; gap: 8px; }
+  .strategy-item { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--text2); }
+  .strategy-item strong { color: var(--text); }
+  .strategy-kicker { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #99f6e4; margin-bottom: 8px; }
+  .race-split-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .race-split { background: #0b1220; border: 1px solid #1f3a5f; border-radius: 10px; padding: 10px 12px; }
+  .race-split .label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; color: #93c5fd; letter-spacing: 0.4px; }
+  .race-split .value { font-size: 18px; font-weight: 700; color: var(--text); margin-top: 2px; }
+  .race-split .hint { font-size: 12px; color: var(--text3); margin-top: 4px; line-height: 1.35; }
+  .decision-badge { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 999px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.4px; }
+  .decision-badge.good { background: #0c1a0c; color: #86efac; border: 1px solid #166534; }
+  .decision-badge.watch { background: #1a1a00; color: #fcd34d; border: 1px solid #a16207; }
+  .decision-badge.risk { background: #1a0a0a; color: #fca5a5; border: 1px solid #b91c1c; }
+
+  @media (max-width: 520px) {
+    .race-split-grid { grid-template-columns: 1fr; }
+  }
   .strength-header { margin-bottom: 6px; }
   .strength-title { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 900; line-height: 1; }
   .strength-title span { color: #a78bfa; }
@@ -307,6 +338,70 @@
         <div class="exercise-item"><div class="ex-dot"></div><div class="ex-info"><div class="ex-name">Multisaltos cortos</div><div class="ex-reps">3 series × 8 repeticiones</div></div></div>
       </div>
       <div class="block-note">Entrena la stiffness del tendón de Aquiles y la elasticidad del pie. Mejora directamente la economía de carrera a 5:00 min/km. Prioriza la técnica sobre la velocidad.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Strategy section -->
+<div class="strategy-section" id="strategy-section">
+  <div class="strategy-title">ESTRATEGIA <span>2 MAYO</span></div>
+  <div class="strategy-subtitle">Afilado final para el intento de 6K en 30:00 · Objetivo secundario: dejar una base lista si el sub-30 cae antes del 31 de mayo</div>
+
+  <div class="strategy-card">
+    <span class="strategy-kicker">Decisión general</span>
+    <p>Desde ahora ya no toca ponerse más fuerte a lo bruto: toca <strong>llegar fresco, memorizar 5:00/km y evitar fatiga tonta</strong>. El 2 de mayo se intenta sí o sí, pero la semana previa debe sentirse ligera y controlada.</p>
+  </div>
+
+  <div class="strategy-card">
+    <h3>Qué sí hacer de aquí al intento</h3>
+    <div class="strategy-list">
+      <div class="strategy-item"><span>✅</span><span><strong>1 sesión termómetro:</strong> 3×1 km a 5:00-5:03/km con 2:30-3:00 suaves. Si sale con control, el sub-30 está muy vivo.</span></div>
+      <div class="strategy-item"><span>✅</span><span><strong>1 activación corta:</strong> 6×200m a 4:50-4:55/km con recuperación amplia. Debe dejar sensación de agilidad, no de castigo.</span></div>
+      <div class="strategy-item"><span>✅</span><span><strong>Rodajes suaves reales:</strong> 30-40 min muy cómodos, respiración fácil, cero ego.</span></div>
+      <div class="strategy-item"><span>✅</span><span><strong>El día antes:</strong> 15-20 min muy suaves + 3 rectas cortas si te va mejor activar que descansar total.</span></div>
+    </div>
+  </div>
+
+  <div class="strategy-card">
+    <h3>Qué NO hacer</h3>
+    <div class="strategy-list">
+      <div class="strategy-item"><span>🚫</span><span>Tirada larga, tempo largo, cuestas duras o gimnasio fuerte de piernas.</span></div>
+      <div class="strategy-item"><span>🚫</span><span>Convertir un rodaje suave en un tempo porque "me encuentro bien".</span></div>
+      <div class="strategy-item"><span>🚫</span><span>Series extra para probarte. A estas alturas solo suman fatiga.</span></div>
+    </div>
+  </div>
+
+  <div class="strategy-card">
+    <h3>Semáforo de confianza</h3>
+    <div class="strategy-list">
+      <div><span class="decision-badge good">🟢 Muy buena señal</span></div>
+      <div class="strategy-item"><span>•</span><span>El 3×1 km sale en algo como 4:59 / 5:01 / 5:02 y terminas exigido pero no roto.</span></div>
+      <div><span class="decision-badge watch">🟡 Señal intermedia</span></div>
+      <div class="strategy-item"><span>•</span><span>Sale más bien en 5:03 / 5:07 / 5:10. Se intenta el 2 de mayo igual, pero como objetivo ambicioso.</span></div>
+      <div><span class="decision-badge risk">🔴 Mala señal</span></div>
+      <div class="strategy-item"><span>•</span><span>No puedes sostener 2-3 repeticiones cerca de 5:00/km. Entonces el 2 de mayo será test serio y la bala grande se mueve dentro de mayo.</span></div>
+    </div>
+  </div>
+
+  <div class="strategy-card">
+    <h3>Plan de carrera: 6K en 30:00</h3>
+    <div class="race-split-grid">
+      <div class="race-split"><div class="label">KM 1</div><div class="value">5:02–5:05</div><div class="hint">Control. No salir pasado aunque te sientas fácil.</div></div>
+      <div class="race-split"><div class="label">KM 2</div><div class="value">5:00–5:02</div><div class="hint">Entra en ritmo objetivo sin tensión.</div></div>
+      <div class="race-split"><div class="label">KM 3</div><div class="value">~5:00</div><div class="hint">Aquí empieza la carrera de verdad.</div></div>
+      <div class="race-split"><div class="label">KM 4</div><div class="value">4:58–5:00</div><div class="hint">Si hay margen, aprieta; si no, mantén sin drama.</div></div>
+      <div class="race-split"><div class="label">KM 5</div><div class="value">~5:00</div><div class="hint">No negociar el ritmo. Aguanta la incomodidad.</div></div>
+      <div class="race-split"><div class="label">KM 6</div><div class="value">Lo que quede</div><div class="hint">Vacía el depósito en el último km.</div></div>
+    </div>
+  </div>
+
+  <div class="strategy-card">
+    <h3>Mantra mental</h3>
+    <div class="strategy-list">
+      <div class="strategy-item"><span>0–2 km</span><span><strong>"voy fácil y controlado"</strong></span></div>
+      <div class="strategy-item"><span>2–4 km</span><span><strong>"mantengo el ritmo"</strong></span></div>
+      <div class="strategy-item"><span>4–5 km</span><span><strong>"no negocio el ritmo"</strong></span></div>
+      <div class="strategy-item"><span>5–6 km</span><span><strong>"ahora sí aprieto"</strong></span></div>
     </div>
   </div>
 </div>
@@ -558,10 +653,12 @@ function updateGlobal() {
 
 function setActiveWeek(w) {
   activeWeek = w;
-  document.querySelectorAll('.week-tab:not(.strength)').forEach(t=>t.classList.toggle('active',parseInt(t.dataset.week)===w));
+  document.querySelectorAll('.week-tab:not(.strength):not(.strategy)').forEach(t=>t.classList.toggle('active',parseInt(t.dataset.week)===w));
   document.getElementById('strength-tab').classList.remove('active');
+  document.getElementById('strategy-tab').classList.remove('active');
   document.querySelectorAll('.week-section').forEach(s=>s.classList.toggle('active',parseInt(s.dataset.week)===w));
   document.getElementById('strength-section').classList.remove('active');
+  document.getElementById('strategy-section').classList.remove('active');
 }
 
 function setStrengthActive() {
@@ -569,6 +666,15 @@ function setStrengthActive() {
   document.getElementById('strength-tab').classList.add('active');
   document.querySelectorAll('.week-section').forEach(s=>s.classList.remove('active'));
   document.getElementById('strength-section').classList.add('active');
+  document.getElementById('strategy-section').classList.remove('active');
+}
+
+function setStrategyActive() {
+  document.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('strategy-tab').classList.add('active');
+  document.querySelectorAll('.week-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('strength-section').classList.remove('active');
+  document.getElementById('strategy-section').classList.add('active');
 }
 
 function getFirstIncompleteWeek() {
@@ -589,6 +695,13 @@ function buildTabs() {
     btn.textContent = 'S'+(i+1);
     cont.appendChild(btn);
   });
+  // Strategy tab
+  const strategyBtn = document.createElement('button');
+  strategyBtn.className = 'week-tab strategy';
+  strategyBtn.id = 'strategy-tab';
+  strategyBtn.onclick = () => setStrategyActive();
+  strategyBtn.textContent = '🎯 2 MAYO';
+  cont.appendChild(strategyBtn);
   // Strength tab
   const sb = document.createElement('button');
   sb.className = 'week-tab strength';
