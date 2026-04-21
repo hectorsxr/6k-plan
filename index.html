@@ -497,13 +497,40 @@ const PLAN = [
     {day:7,type:"Dom 3 May · Recuperación",icon:"😴",desc:"Descanso total o 20-30 min muy suaves",detail:"El día después del intento: descanso total si acabas tocado, o <span class='highlight'>20-30 min muy suaves</span> si te ayuda a soltar piernas. Sin mirar ritmo y sin convertir la recuperación en entrenamiento.",rest:true}
   ]},
   { week:8, days:[
-    {day:1,type:"Trote suave",icon:"🏃",desc:"35 min · 6:15-6:30 /km",detail:"Comienza la descarga real. 35 minutos de trote muy fácil a <span class='highlight'>6:15-6:30 min/km</span>. Termina con buenas sensaciones, no con cansancio.",rest:false},
-    {day:2,type:"Intervalos",icon:"⚡",desc:"2×1km · 5:00 /km · 5:00/rep",detail:"Último recordatorio específico: <span class='highlight'>2×1 km</span> a ritmo objetivo exacto (<span class='highlight'>5:00 min/km</span>) con <span class='highlight'>3 min de recuperación</span>. Calienta bien y corta la sesión si notas fatiga rara.",rest:false},
-    {day:3,type:"Trote + rectas",icon:"🎯",desc:"25 min suaves + 4×80m",detail:"25 minutos muy suaves y después <span class='highlight'>4 rectas de 80 m</span> progresivas, con mucha recuperación. Solo activar, nada de acumular carga.",rest:false},
-    {day:4,type:"Descanso",icon:"🧘",desc:"Descanso o movilidad",detail:"Descanso activo o movilidad ligera. Duerme bien y cuida hidratación.",rest:true},
-    {day:5,type:"Activación pre-carrera",icon:"🏃",desc:"20 min muy suaves + 3 rectas",detail:"20 minutos muy suaves a ritmo conversación y <span class='highlight'>3 rectas cortas</span> al final. Debes acabar con sensación de piernas despiertas.",rest:false},
-    {day:6,type:"Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total. Prepara la salida, revisa material y evita caminar de más.",rest:true},
-    {day:7,type:"🏁 OBJETIVO",icon:"🏁",desc:"6K en 30:00 · 5:00 /km",detail:"<strong>¡DÍA DE LA CARRERA!</strong> Objetivo: <span class='highlight'>6 km en 30:00</span> a <span class='highlight'>5:00 min/km</span>. Sal con control: km 1 en 5:02-5:04, estabiliza del 2 al 5 cerca de 5:00 y aprieta en el último km si queda margen.",rest:false}
+    {day:1,type:"Lun 4 May · Recuperación",icon:"🏃",desc:"25-35 min muy suaves o descanso",detail:"Primer día tras el intento del 2 de mayo. Si acabaste muy tocado, descansa. Si te notas razonablemente bien, haz <span class='highlight'>25-35 min muy suaves</span> a ritmo conversación. Nada de mirar ritmos altos esta semana al inicio.",rest:false},
+    {day:2,type:"Mar 5 May · Soltar",icon:"🧘",desc:"Descanso o movilidad ligera",detail:"Movilidad de tobillo, gemelo, sóleo y cadera. Si sigues cargado del intento, mejor descanso completo. Esta semana manda la recuperación, no la épica.",rest:true},
+    {day:3,type:"Mié 6 May · Rodaje controlado",icon:"🏃",desc:"35-40 min · 6:10-6:25 /km",detail:"Vuelta progresiva a la rutina con <span class='highlight'>35-40 min suaves</span>. Si el cuerpo sigue pesado, acorta a 30 min. El objetivo es recuperar sensación de ligereza, no forzar.",rest:false},
+    {day:4,type:"Jue 7 May · Reintroducción de ritmo",icon:"🎯",desc:"6×400m · 4:55-5:00 /km",detail:"Primera sesión de calidad tras el intento: <span class='highlight'>6×400m</span> a ritmo objetivo o ligeramente más rápido, con <span class='highlight'>90 segundos suaves</span> entre repeticiones. Debe sentirse como reactivación, no como castigo.",rest:false},
+    {day:5,type:"Vie 8 May · Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso completo para absorber. Si tienes agujetas residuales, céntrate en dormir bien y caminar un poco.",rest:true},
+    {day:6,type:"Sáb 9 May · Rodaje fácil",icon:"🏃",desc:"45 min · 6:05-6:20 /km",detail:"Rodaje suave y estable de <span class='highlight'>45 min</span>. Este sí debe parecer un rodaje, no una carrera encubierta.",rest:false},
+    {day:7,type:"Dom 10 May · Progresivo corto",icon:"⚡",desc:"30 min + 6×100m progresivos",detail:"30 min muy suaves y al final <span class='highlight'>6 rectas de 100m</span> progresivas con recuperación completa. Sirve para recuperar chispa sin elevar demasiado la carga.",rest:false}
+  ]},
+  { week:9, days:[
+    {day:1,type:"Lun 11 May · Descanso",icon:"🧘",desc:"Descanso o paseo corto",detail:"Pequeña descarga al arrancar la semana. Mejor llegar fresco a la sesión larga de series que sumar cansancio tonto.",rest:true},
+    {day:2,type:"Mar 12 May · Intervalos largos",icon:"⚡",desc:"4×1 km · 5:00-5:03 /km",detail:"Sesión clave del nuevo bloque: <span class='highlight'>4×1 km</span> a <span class='highlight'>5:00-5:03/km</span> con <span class='highlight'>2:30 min suaves</span> entre repeticiones. Si sale con control, la segunda bala del mes gana muchísima fuerza.",rest:false},
+    {day:3,type:"Mié 13 May · Recuperación",icon:"🏃",desc:"30-35 min · 6:15-6:30 /km",detail:"Rodaje muy suave para vaciar fatiga y mantener frecuencia. Si te notas cargado, 25-30 min bastan.",rest:false},
+    {day:4,type:"Jue 14 May · Tempo",icon:"🎯",desc:"20-22 min · 5:12-5:18 /km",detail:"Tempo continuo en torno al umbral: <span class='highlight'>20-22 min</span> a ritmo sólido pero sostenible. Acaba con sensación de poder haber hecho 3-4 min más, no completamente vacío.",rest:false},
+    {day:5,type:"Vie 15 May · Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso total. Esta combinación de 1 km + tempo ya mete suficiente estímulo.",rest:true},
+    {day:6,type:"Sáb 16 May · Rodaje medio",icon:"🏃",desc:"50 min · 6:05-6:20 /km",detail:"Rodaje cómodo de <span class='highlight'>50 min</span>. Mantén la respiración fácil y evita que el reloj te empuje.",rest:false},
+    {day:7,type:"Dom 17 May · Cuestas cortas",icon:"⛰️",desc:"8×12-15 s · técnica y reactividad",detail:"Cuestas muy cortas, explosivas pero limpias. Recuperación completa bajando caminando. Si notas gemelos cargados, cambia por 6 rectas en llano.",rest:false}
+  ]},
+  { week:10, days:[
+    {day:1,type:"Lun 18 May · Suave",icon:"🏃",desc:"35-40 min · 6:10-6:25 /km",detail:"Rodaje suave para abrir la semana sin arrastrar fatiga del domingo. Si las cuestas te dejan cargado, quédate en 30-35 min.",rest:false},
+    {day:2,type:"Mar 19 May · Específica 6K",icon:"⚡",desc:"3×1.5 km · 5:02-5:05 /km",detail:"Bloque muy específico: <span class='highlight'>3×1.5 km</span> a ritmo ligeramente conservador respecto al objetivo, con <span class='highlight'>3 min suaves</span> entre bloques. Aquí se construye la tolerancia a sostener ritmo de carrera más tiempo.",rest:false},
+    {day:3,type:"Mié 20 May · Recuperación",icon:"🏃",desc:"30 min · 6:15-6:30 /km",detail:"30 min muy suaves, casi de trámite. Si el martes te deja tocado, convierte esto en descanso total.",rest:false},
+    {day:4,type:"Jue 21 May · Ritmo controlado",icon:"🎯",desc:"2×12 min · 5:10-5:15 /km",detail:"Dos bloques de <span class='highlight'>12 min</span> a ritmo controlado con <span class='highlight'>3 min suaves</span> entre medias. Debe reforzar confianza, no dejarte destruido.",rest:false},
+    {day:5,type:"Vie 22 May · Descanso",icon:"🧘",desc:"Descanso o movilidad",detail:"Viernes de descarga. Sueño, movilidad y nada de fuerza fuerte de piernas.",rest:true},
+    {day:6,type:"Sáb 23 May · Rodaje fácil",icon:"🏃",desc:"45 min · 6:05-6:20 /km",detail:"Rodaje fácil para sostener volumen sin fatiga. Si te notas bien, añade al final 4 rectas de 10 s.",rest:false},
+    {day:7,type:"Dom 24 May · Activación llana",icon:"⚡",desc:"6×200m · 4:50-4:55 /km",detail:"Rectas largas/controladas en llano con recuperación amplia. Busca velocidad cómoda y técnica limpia.",rest:false}
+  ]},
+  { week:11, days:[
+    {day:1,type:"Lun 25 May · Suave",icon:"🏃",desc:"35 min · 6:15-6:30 /km",detail:"Arranca la semana final del segundo intento. 35 min muy fáciles para empezar a descargar sin quedarte parado.",rest:false},
+    {day:2,type:"Mar 26 May · Termómetro final",icon:"⚡",desc:"3×1 km · 4:58-5:02 /km",detail:"Último gran test: <span class='highlight'>3×1 km</span> a ritmo objetivo o un punto más rápido, con <span class='highlight'>2:30 min suaves</span> entre repeticiones. Si sale sólido, el 31 de mayo es el día de vaciar el depósito.",rest:false},
+    {day:3,type:"Mié 27 May · Recuperación",icon:"🏃",desc:"25-30 min · 6:20-6:35 /km",detail:"Muy suave, muy controlado. El único objetivo es llegar fresco a la mini activación del fin de semana.",rest:false},
+    {day:4,type:"Jue 28 May · Trote + rectas",icon:"🎯",desc:"20-25 min suaves + 4×80m",detail:"Trote corto y 4 rectas progresivas. Solo activar, nada de acumular carga. Debe dejarte con ganas de correr más.",rest:false},
+    {day:5,type:"Vie 29 May · Descanso",icon:"😴",desc:"Descanso total",detail:"Descanso completo. Hidrátate, duerme bien y deja logística cerrada.",rest:true},
+    {day:6,type:"Sáb 30 May · Pre-carrera",icon:"🏃",desc:"15 min muy suaves + 3 rectas",detail:"Activación mínima de víspera: 15 min suaves y 3 rectas cortas. Para acabar con sensación de hambre y piernas despiertas.",rest:false},
+    {day:7,type:"Dom 31 May · OBJETIVO 2",icon:"🏁",desc:"6K en 30:00 · segundo intento",detail:"<strong>Segundo intento del mes.</strong> Mismo plan: salida contenida, entrar en ritmo desde el km 2, no negociar del 4 al 5 y vaciarte en el último kilómetro. Si el 2 de mayo ya cayó el sub-30, usa esta fecha para confirmarlo o mejorar marca.",rest:false}
   ]}
 ];
 
@@ -823,7 +850,7 @@ function buildDayCard(wNum, d) {
 }
 
 function renderAll() {
-  for(let i=1;i<=8;i++) renderWeek(i);
+  for(let i=1;i<=PLAN.length;i++) renderWeek(i);
   updateGlobal();
 }
 
